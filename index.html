@@ -20,20 +20,25 @@
                 <input class="searchbar-input" type="text" placeholder="Поиск...">
             </div>
             <div class="header-actions">
-                <div class="dropdown messages-dropdown">
+                <div class="messages-dropdown">
                     <img src="/src/img/icons/chat.svg" class="icon-button" alt="">
                 </div>
-                <div class="dropdown notifications-dropdown">
+                <div class="notifications-dropdown">
                     <img src="/src/img/icons/bell.svg" class="icon-button" alt="">
                     <span class="badge">5</span>
                 </div>
-                <div class="dropdown user-dropdown">
+                <div class="user-dropdown" onclick="toggleUserDropdown()">
                     <div class="user-avatar">
-                        <img src="/src/img/test_avatar.png" alt="" width="36">
+                        <img src="/src/img/test_avatar.png" alt="" width="24">
                     </div>
                     <div class="user-name">Саша Смелая</div>
                     <img src="/src/img/icons/chevron_down.svg" class="icon-button" alt="">
                 </div>
+            </div>
+        </div>
+        <div class="user-dropdown-body">
+            <div class="user-dropdown-item">Выйти
+                <img src="/src/img/icons/logout.svg" alt="" width="16" height="16">
             </div>
         </div>
     </div>
@@ -84,27 +89,33 @@
                         <div class="content-body-title">Дополнительная информация</div>
                         <div class="tabs-container">
                             <div class="tabs-inner">
-                                <div class="tab active" data-tab="tab_1">Пункт 11</div>
-                                <div class="tab" data-tab="tab_2">Пункт 10</div>
-                                <div class="tab" data-tab="tab_3">Пункт 9</div>
+                                <div class="tab active" data-tab="tab_1" onclick="onTabChange('tab_1')">Пункт 11</div>
+                                <div class="tab" data-tab="tab_2" onclick="onTabChange('tab_2')">Пункт 10</div>
+                                <div class="tab" data-tab="tab_3" onclick="onTabChange('tab_3')">Пункт 9</div>
                             </div>
                         </div>
-                        <div class="tab-content active" data-tab-content="tab_1">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima
-                                necessitatibus ducimus illo sed quo deserunt excepturi sunt non enim inventore aliquam
-                                esse asperiores ea dolorem quibusdam est.</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, doloribus, nulla.
-                                Soluta error repudiandae cumque veniam fugiat.</p>
-                        </div>
-                        <div class="tab-content" data-tab-content="tab_2">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam at facere fugiat iusto
-                                modi natus quia quod ratione recusandae voluptatem. Debitis error harum inventore
-                                perspiciatis. Ab consequuntur doloribus suscipit? Eum?</p>
-                        </div>
-                        <div class="tab-content" data-tab-content="tab_3">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus distinctio dolor
-                                dolorum ducimus, eaque, error iure iusto laudantium nam neque optio perspiciatis placeat
-                                quaerat quia soluta, temporibus ut vitae voluptatum!</p>
+                        <div class="tabs-content-container">
+                            <div class="tab-content active" data-tab-content="tab_1">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis minima
+                                    necessitatibus ducimus illo sed quo deserunt excepturi sunt non enim inventore
+                                    aliquam
+                                    esse asperiores ea dolorem quibusdam est.</p>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, doloribus,
+                                    nulla.
+                                    Soluta error repudiandae cumque veniam fugiat.</p>
+                            </div>
+                            <div class="tab-content" data-tab-content="tab_2">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam at facere fugiat
+                                    iusto
+                                    modi natus quia quod ratione recusandae voluptatem. Debitis error harum inventore
+                                    perspiciatis. Ab consequuntur doloribus suscipit? Eum?</p>
+                            </div>
+                            <div class="tab-content" data-tab-content="tab_3">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus distinctio dolor
+                                    dolorum ducimus, eaque, error iure iusto laudantium nam neque optio perspiciatis
+                                    placeat
+                                    quaerat quia soluta, temporibus ut vitae voluptatum!</p>
+                            </div>
                         </div>
                     </section>
                     <section class="content-section">

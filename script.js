@@ -87,9 +87,17 @@ const menuItems = {
   }
 };
 
+let onUserDropdownCLick = false;
+
 document.addEventListener('DOMContentLoaded', function () {
   renderSideMenuItems();
   renderContentMenu();
+})
+
+document.querySelector('body').addEventListener('click', function (e) {
+  const userDropdown = document.querySelector('.user-dropdown-body');
+  if (userDropdown.classList.contains('active') && !onUserDropdownCLick) userDropdown.classList.remove('active');
+  onUserDropdownCLick = false;
 })
 
 function renderSideMenuItems() {
@@ -153,4 +161,24 @@ function renderContentMenu() {
 function toggleSidebar() {
   const sidebar = document.querySelector('.side-menu');
   sidebar.classList.toggle('active');
+}
+
+function onTabChange(selectedTabName) {
+  let tabs = document.querySelectorAll('.tabs-inner .tab');
+  let tabsContent = document.querySelectorAll('.tabs-content-container .tab-content');
+  tabs = Array.from(tabs);
+  tabsContent = Array.from(tabsContent);
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabsContent.forEach(tab => tab.classList.remove('active'));
+  const selectedTab = document.querySelector(`.tabs-inner .tab[data-tab="${selectedTabName}"]`);
+  const selectedTabContent = document.querySelector(`.tabs-content-container .tab-content[data-tab-content="${selectedTabName}"]`);
+  selectedTab.classList.add('active');
+  selectedTabContent.classList.add('active');
+}
+
+function toggleUserDropdown() {
+  onUserDropdownCLick = true;
+  setTimeout(()=>{
+    document.querySelector('.user-dropdown-body').classList.toggle('active');
+  }, 100)
 }
