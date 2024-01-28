@@ -123,7 +123,7 @@ function renderSideMenuItems() {
         menuListItem.classList.add('active');
       menuListItem.innerHTML = `
                                     <div class="menu-list-item-icon">
-                                        <img src="/src/img/icons/${item.icon}.svg" alt="">
+                                        <img src="./src/img/icons/${item.icon}.svg" alt="">
                                     </div>
                                     <div class="menu-list-item-label">${item.label}</div>
                                     ${item.count ? `<div class="menu-list-item-badge">${item.count}</div>` : ''}
