@@ -51,6 +51,17 @@ const menuItems = {
         label: 'База знаний',
         icon: 'question',
         link: '/education',
+        content: {
+          title: 'Настройки профиля',
+          menuItems: [
+            {label: 'Настройки профиля', link: 'profile_section'},
+            {label: 'Профиль пользователя', link: 'profile_section'},
+            {label: 'Изменение общих настроек', link: 'profile_section'},
+            {label: 'Дополнительные возможности', link: 'profile_section'},
+            {label: 'Отправка запросов', link: 'profile_section'},
+            {label: 'Работа со стастистикой', link: 'profile_section'},
+          ]
+        }
       },
       {
         label: 'Обновления',
@@ -78,6 +89,7 @@ const menuItems = {
 
 document.addEventListener('DOMContentLoaded', function () {
   renderSideMenuItems();
+  renderContentMenu();
 })
 
 function renderSideMenuItems() {
@@ -97,7 +109,10 @@ function renderSideMenuItems() {
     value.items.forEach(item => {
       let menuListItem = document.createElement('li');
       menuListItem.classList.add('menu-list-item');
-      menuListItem.innerHTML = `<a href="/${item.link}">
+      menuListItem.setAttribute('data-value', item.link);
+      if (item.link === '/education')
+        menuListItem.classList.add('active');
+      menuListItem.innerHTML = `<a href="${item.link}">
                                     <div class="menu-list-item-icon">
                                         <img src="/src/img/icons/${item.icon}.svg" alt="">
                                     </div>
@@ -109,4 +124,28 @@ function renderSideMenuItems() {
     menuSection.appendChild(menuList);
     sideMenu.appendChild(menuSection);
   })
+}
+
+function renderContentMenu() {
+  const contentMenu = document.querySelector('.content-menu');
+  const activeSection = document.querySelector('.side-menu .menu-list-item.active').getAttribute('data-value');
+  const currentContentMenu = Object.entries(menuItems)
+    .find(([key, value]) => value.items.find(item => item.link === activeSection))[1].items
+    .find(item => item.link === activeSection).content;
+  const contentTitle = document.createElement('div');
+  contentTitle.classList.add('content-title');
+  contentTitle.innerHTML = currentContentMenu.title;
+  contentMenu.appendChild(contentTitle);
+  let menuList = document.createElement('ul');
+  menuList.classList.add('content-menu-list');
+  currentContentMenu.menuItems.forEach((item, i) => {
+    let menuListItem = document.createElement('li');
+    menuListItem.classList.add('content-menu-list-item');
+    if (i === 0) menuListItem.classList.add('active');
+    menuListItem.innerHTML = `<a href="${item.link}">
+                                    <div class="menu-list-item-label">${item.label}</div>
+                                </a>`;
+    menuList.appendChild(menuListItem);
+  })
+  contentMenu.appendChild(menuList);
 }
