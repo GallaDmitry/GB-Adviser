@@ -244,7 +244,7 @@ main .main-inner .side-menu .menu-section .menu-list .menu-list-item.active {
     color: #FFFFFF;
 }
 
-main .main-inner .side-menu .menu-section .menu-list .menu-list-item a {
+main .main-inner .side-menu .menu-section .menu-list .menu-list-item {
     display: flex;
     align-items: center;
 }
@@ -284,11 +284,37 @@ main .main-inner .side-menu .menu-section .menu-list .menu-list-item .menu-list-
 /*SIDE MENU END*/
 /*CONTENT MENU START*/
 main .main-inner .content-container {
-    display: grid;
+    display: none;
     grid-template-columns: 325px 1fr;
     padding-top: 30px;
 }
 
+main .main-inner .content-container.active {
+    display: grid;
+}
+
+main .main-inner .content-container.demo.active {
+    display: block;
+    max-width: 660px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+main .main-inner .content-container.demo .content-container-title {
+    margin-bottom: 40px;
+    font-size: var(--headline_1-font-size);
+    font-weight: 700;
+}
+main .main-inner .content-container.demo img {
+    margin-bottom: 24px;
+}
+main .main-inner .content-container.demo .content-container-text {
+    font-size: var(--body-font-size);
+    line-height: 144%;
+}
+main .main-inner .content-container.demo .content-container-text.post-scriptum a {
+    color: var(--primary-el-color);
+}
 main .main-inner .content-container .content-menu {
     padding-left: 40px;
     padding-right: 30px;

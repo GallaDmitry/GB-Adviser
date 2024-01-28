@@ -54,12 +54,12 @@ const menuItems = {
         content: {
           title: 'Настройки профиля',
           menuItems: [
-            {label: 'Настройки профиля', link: 'profile_section'},
-            {label: 'Профиль пользователя', link: 'profile_section'},
-            {label: 'Изменение общих настроек', link: 'profile_section'},
-            {label: 'Дополнительные возможности', link: 'profile_section'},
-            {label: 'Отправка запросов', link: 'profile_section'},
-            {label: 'Работа со стастистикой', link: 'profile_section'},
+            {label: 'Настройки профиля', link: 'profile_section_1'},
+            {label: 'Профиль пользователя', link: 'profile_section_2'},
+            {label: 'Изменение общих настроек', link: 'profile_section_3'},
+            {label: 'Дополнительные возможности', link: 'profile_section_4'},
+            {label: 'Отправка запросов', link: 'profile_section_5'},
+            {label: 'Работа со стастистикой', link: 'profile_section_6'},
           ]
         }
       },
@@ -76,7 +76,7 @@ const menuItems = {
       {
         label: 'Профиль',
         icon: 'profile',
-        link: '/',
+        link: '/profile',
       },
       {
         label: 'Общие настройки',
@@ -118,20 +118,36 @@ function renderSideMenuItems() {
       let menuListItem = document.createElement('li');
       menuListItem.classList.add('menu-list-item');
       menuListItem.setAttribute('data-value', item.link);
+      menuListItem.addEventListener('click',()=>selectSideMenuItem(item.link))
       if (item.link === '/education')
         menuListItem.classList.add('active');
-      menuListItem.innerHTML = `<a href="${item.link}">
+      menuListItem.innerHTML = `
                                     <div class="menu-list-item-icon">
                                         <img src="/src/img/icons/${item.icon}.svg" alt="">
                                     </div>
                                     <div class="menu-list-item-label">${item.label}</div>
                                     ${item.count ? `<div class="menu-list-item-badge">${item.count}</div>` : ''}
-                                </a>`;
+                                `;
       menuList.appendChild(menuListItem);
     })
     menuSection.appendChild(menuList);
     sideMenu.appendChild(menuSection);
   })
+}
+
+function selectSideMenuItem(selectedItemName) {
+  let itemsList = document.querySelectorAll('.menu-list .menu-list-item');
+  itemsList = Array.from(itemsList);
+  itemsList.forEach(item=>item.classList.remove('active'));
+  const selectedItem = document.querySelector(`.menu-list .menu-list-item[data-value="${selectedItemName}"]`);
+  selectedItem.classList.add('active');
+  if (selectedItemName === '/education') {
+    document.querySelector('.content-container.main').classList.add('active');
+    document.querySelector('.content-container.demo').classList.remove('active');
+  } else {
+    document.querySelector('.content-container.main').classList.remove('active');
+    document.querySelector('.content-container.demo').classList.add('active');
+  }
 }
 
 function renderContentMenu() {
@@ -149,13 +165,24 @@ function renderContentMenu() {
   currentContentMenu.menuItems.forEach((item, i) => {
     let menuListItem = document.createElement('li');
     menuListItem.classList.add('content-menu-list-item');
+    menuListItem.setAttribute('data-value', item.link);
+    menuListItem.addEventListener('click',()=>selectContentMenuItem(item.link))
     if (i === 0) menuListItem.classList.add('active');
-    menuListItem.innerHTML = `<a href="${item.link}">
+    menuListItem.innerHTML = `
                                     <div class="menu-list-item-label">${item.label}</div>
-                                </a>`;
+                                `;
     menuList.appendChild(menuListItem);
   })
   contentMenu.appendChild(menuList);
+}
+
+
+function selectContentMenuItem(selectedItemName) {
+  let itemsList = document.querySelectorAll('.content-menu-list .content-menu-list-item');
+  itemsList = Array.from(itemsList);
+  itemsList.forEach(item=>item.classList.remove('active'));
+  const selectedItem = document.querySelector(`.content-menu-list .content-menu-list-item[data-value="${selectedItemName}"]`);
+  selectedItem.classList.add('active');
 }
 
 function toggleSidebar() {
