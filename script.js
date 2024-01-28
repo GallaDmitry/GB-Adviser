@@ -149,3 +149,8 @@ function renderContentMenu() {
   })
   contentMenu.appendChild(menuList);
 }
+
+function toggleSidebar() {
+  const sidebar = document.querySelector('.side-menu');
+  sidebar.classList.toggle('active');
+}

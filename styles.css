@@ -45,7 +45,7 @@ input {
     display: inline-block;
     outline: none;
     border: none;
-    font-size: var(--body-font-size);
+    font-size: 16px;
     color: var(--primary-text-color);
 }
 
@@ -93,6 +93,10 @@ header .header-inner {
     padding-left: 16px;
     padding-right: 28px;
     max-width: 1440px;
+}
+
+header .header-inner .sidebar-toggle {
+    display: none;
 }
 
 header .header-logo {
@@ -148,6 +152,13 @@ header .header-content .header-actions .notifications-dropdown {
 
 header .header-content .header-actions .user-dropdown .user-avatar {
     margin-right: 12px;
+    width: 36px;
+    height: 36px;
+}
+
+header .header-content .header-actions .user-dropdown .user-avatar img {
+    width: 100%;
+    height: 100%;
 }
 
 header .header-content .header-actions .user-name {
@@ -632,5 +643,74 @@ main .main-inner .content-container .content-menu .content-menu-list-item.active
 }
 
 @media screen and (max-width: 575px) {
+    :root {
+        --headline_1-font-size: 20px;
+        --headline_2-font-size: 16px;
+        --body-font-size: 14px;
+        --body_2-font-size: 12px;
+        --body_3-font-size: 10px;
+        --header-height: 54px;
+    }
+    header .header-inner {
+        padding: 0 16px;
+    }
+    header .header-logo {
+        height: 24px;
+        width: fit-content;
+        margin-right: 16px;
+    }
+    header .header-inner .sidebar-toggle {
+        display: block;
+        cursor: pointer;
+        width: 24px;
+    }
+    header .header-content .searchbar-container {
+        display: none;
+    }
+    header .header-content .header-actions {
+        margin-left: auto;
+    }
 
+    header .header-content .header-actions .user-dropdown .user-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    header .header-content .header-actions .user-name {
+        display: none;
+    }
+    main .main-inner {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+    }
+    @keyframes sidebarToggleAnimation {
+        0% {
+            width: 0;
+            opacity: 0;
+        }
+    }
+    main .main-inner .side-menu {
+        left: -575px;
+        transition: left 400ms;
+        position: absolute;
+        background: var(--page-background-color);
+        z-index: 999;
+        overflow: auto;
+        height: calc(100vh - var(--header-height));
+        padding: 16px;
+        width: 100%;
+        top: var(--header-height);
+    }
+    main .main-inner .side-menu.active {
+        left: 0;
+    }
+    main .main-inner .content-container .content-menu {
+        margin-bottom: 24px;
+        padding-left: 0;
+    }
+    .content {
+        padding-left: 0;
+    }
+    .content-footer {
+        grid-gap: 16px;
+    }
 }
